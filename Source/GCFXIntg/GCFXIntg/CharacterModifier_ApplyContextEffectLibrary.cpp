@@ -34,14 +34,14 @@ bool UCharacterModifier_ApplyContextEffectLibrary::OnApply(APawn* Pawn) const
 			{
 				UE_LOG(LogGCFXI, Log, TEXT("++ContextEffectLibraries"));
 
-				Component->UpdateLibraries(Libraries);
+				Component->UpdateContextEffectLibraries(Libraries);
 			}
 
 			if (bShouldApplyContexts)
 			{
 				UE_LOG(LogGCFXI, Log, TEXT("++Contexts"));
 
-				Component->UpdateEffectContexts(Contexts);
+				Component->UpdateExtraContexts(Contexts);
 			}
 		}
 	}

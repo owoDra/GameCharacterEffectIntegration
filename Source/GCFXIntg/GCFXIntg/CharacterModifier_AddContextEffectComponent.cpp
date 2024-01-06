@@ -49,7 +49,7 @@ bool UCharacterModifier_AddContextEffectComponent::OnApply(APawn* Pawn) const
 			{
 				UE_LOG(LogGCFXI, Log, TEXT("++Contexts"));
 
-				NewCEC->EffectContexts = Contexts;
+				NewCEC->ExtraContexts = Contexts;
 			}
 
 			NewCEC->RegisterComponent();
