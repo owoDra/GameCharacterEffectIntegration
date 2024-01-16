@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include "CharacterModifier.h"
+#include "Recipe/CharacterRecipe.h"
 
 #include "GameplayTagContainer.h"
 
-#include "CharacterModifier_AddContextEffectComponent.generated.h"
+#include "CharacterRecipe_AddContextEffectComponent.generated.h"
 
 class UContextEffectComponent;
 class UContextEffectLibrary;
@@ -16,11 +16,11 @@ class UContextEffectLibrary;
  * Modifier class to add context effect component to Pawn
  */
 UCLASS(meta = (DisplayName = "CM Add Context Effect Component"))
-class UCharacterModifier_AddContextEffectComponent final : public UCharacterModifier
+class UCharacterRecipe_AddContextEffectComponent final : public UCharacterRecipe
 {
 	GENERATED_BODY()
 public:
-	UCharacterModifier_AddContextEffectComponent();
+	UCharacterRecipe_AddContextEffectComponent();
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "AddContextEffectComponent")
@@ -33,6 +33,6 @@ protected:
 	FGameplayTagContainer Contexts;
 
 protected:
-	virtual bool OnApply(APawn* Pawn) const override;
+	virtual void StartSetupNonInstanced_Implementation(FCharacterRecipePawnInfo Info) const override;
 
 };
