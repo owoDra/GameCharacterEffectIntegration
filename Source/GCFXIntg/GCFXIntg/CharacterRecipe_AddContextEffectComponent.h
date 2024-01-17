@@ -15,7 +15,7 @@ class UContextEffectLibrary;
 /**
  * Modifier class to add context effect component to Pawn
  */
-UCLASS(meta = (DisplayName = "CM Add Context Effect Component"))
+UCLASS()
 class UCharacterRecipe_AddContextEffectComponent final : public UCharacterRecipe
 {
 	GENERATED_BODY()

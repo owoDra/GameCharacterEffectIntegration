@@ -14,7 +14,7 @@ class UContextEffectLibrary;
 /**
  * Modifier class to add context effect libraries to component
  */
-UCLASS(meta = (DisplayName = "CM Apply Context Effect Library"))
+UCLASS()
 class UCharacterRecipe_ApplyContextEffectLibrary final : public UCharacterRecipe
 {
 	GENERATED_BODY()
