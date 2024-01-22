@@ -2,12 +2,11 @@
 
 #include "CharacterRecipe_AddContextEffectComponent.h"
 
-#include "GCFXIntgLogs.h"
-
 #include "ContextEffectComponent.h"
 #include "ContextEffectLibrary.h"
 
 #include "CharacterInitStateComponent.h"
+#include "GCExtLogs.h"
 
 #include "GameFramework/Pawn.h"
 
@@ -18,6 +17,11 @@ UCharacterRecipe_AddContextEffectComponent::UCharacterRecipe_AddContextEffectCom
 {
 	InstancingPolicy = ECharacterRecipeInstancingPolicy::NonInstanced;
 	NetExecutionPolicy = ECharacterRecipeNetExecutionPolicy::ClientOnly;
+
+#if WITH_EDITOR
+	StaticClass()->FindPropertyByName(FName{ TEXTVIEW("InstancingPolicy") })->SetPropertyFlags(CPF_DisableEditOnTemplate);
+	StaticClass()->FindPropertyByName(FName{ TEXTVIEW("NetExecutionPolicy") })->SetPropertyFlags(CPF_DisableEditOnTemplate);
+#endif
 }
 
 
@@ -35,18 +39,18 @@ void UCharacterRecipe_AddContextEffectComponent::StartSetupNonInstanced_Implemen
 	{
 		auto* NewCEC{ NewObject<UContextEffectComponent>(Pawn, LoadedComponentClass) };
 
-		UE_LOG(LogGCFXI, Log, TEXT("+Component (Name: %s, Class: %s)"), *GetNameSafe(NewCEC), *GetNameSafe(LoadedComponentClass));
+		UE_LOG(LogGameExt_CharacterRecipe, Log, TEXT("+Component (Name: %s, Class: %s)"), *GetNameSafe(NewCEC), *GetNameSafe(LoadedComponentClass));
 
 		if (!Libraries.IsEmpty())
 		{
-			UE_LOG(LogGCFXI, Log, TEXT("++ContextEffectLibraries"));
+			UE_LOG(LogGameExt_CharacterRecipe, Log, TEXT("++ContextEffectLibraries"));
 
 			NewCEC->ContextEffectLibraries = Libraries;
 		}
 
 		if (!Contexts.IsEmpty())
 		{
-			UE_LOG(LogGCFXI, Log, TEXT("++Contexts"));
+			UE_LOG(LogGameExt_CharacterRecipe, Log, TEXT("++Contexts"));
 
 			NewCEC->ExtraContexts = Contexts;
 		}
